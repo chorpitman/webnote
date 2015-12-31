@@ -1,36 +1,30 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <html>
 <body>
-<h2>Hello World!</h2>
+<h1>WEB NOTES</h1>
+
 <table border="1px">
-
-
-<c:forEach var="note" items="${notes}">
-    ${notes}
-
     <tr>
-        <td>id: <c:out value="${note.id}"/></td><br>
+        <th>NOTE ID</th>
+        <th>DATE NOTE</th>
+        <th>TITLE</th>
+        <th>CATEGORY</th>
+        <th>DESCRITION</th>
+        <th>Edit</th>
+        <th>Delete</th>
     </tr>
 
-    <tr>
-        <td>date <c:out value="${note.date}"/></td><br>
-    </tr>
-
-    <tr>
-        <td>title <c:out value="${note.title}"/></td><br>
-    </tr>
-
-    <tr>
-        <td>category <c:out value="${note.category}"/></td><br>
-    </tr>
-
-    <tr>
-        <td>description <c:out value="${note.description}"/></td><br>
-    </tr>
-
-</c:forEach>
+    <c:forEach var="note" items="${notes}">
+        <tr>
+            <td><c:out value="${note.id}"/></td>
+            <td><c:out value="${note.date}"/></td>
+            <td><c:out value="${note.title}"/></td>
+            <td><c:out value="${note.category}"/></td>
+            <td><c:out value="${note.description}"/></td>
+            <td><a href="" >edit</a></td>
+            <td><a href="" >delete</a></td>
+    </c:forEach>
 </table>
-
+<a href="/add">add</a>
 </body>
 </html>

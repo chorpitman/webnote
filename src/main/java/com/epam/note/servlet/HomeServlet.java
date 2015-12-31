@@ -1,8 +1,8 @@
 package com.epam.note.servlet;
 
 import com.epam.note.model.Note;
-import com.epam.note.service.NoteService;
-import com.epam.note.util.DBConnection;
+import com.epam.note.service.INoteService;
+import com.epam.note.service.impl.NoteService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,14 +14,15 @@ import java.util.List;
 
 @WebServlet("/")
 public class HomeServlet extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    }
+
+    private INoteService noteService = new NoteService();
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println(DBConnection.getConnection());
-        NoteService noteService = new NoteService();
         List<Note> notes = noteService.getNotes();
         request.setAttribute("notes", notes);
         request.getRequestDispatcher("home.jsp").forward(request, response);
+    }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     }
 }

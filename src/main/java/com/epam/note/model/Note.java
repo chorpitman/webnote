@@ -3,13 +3,17 @@ package com.epam.note.model;
 import java.util.Date;
 
 public class Note {
-    private int id;
+    private Integer id;
     private Date date;
     private String title;
     private String category;
     private String description;
 
-    public Note(int id, Date date, String title, String category, String description) {
+    public Note() {
+
+    }
+
+    public Note(Integer id, Date date, String title, String category, String description) {
         this.id = id;
         this.date = date;
         this.title = title;
@@ -17,11 +21,11 @@ public class Note {
         this.description = description;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
