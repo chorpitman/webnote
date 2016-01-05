@@ -8,7 +8,6 @@ import com.epam.note.service.INoteService;
 import java.util.List;
 
 public class NoteService implements INoteService {
-
     private INoteDao noteDao = new NoteDao();
 
     @Override
@@ -19,5 +18,15 @@ public class NoteService implements INoteService {
     @Override
     public void add(Note note) {
         noteDao.add(note);
+    }
+
+    @Override
+    public void delete(int id) {
+        noteDao.delete(id);
+    }
+
+    @Override
+    public void update(Note note){
+        noteDao.update(note);
     }
 }

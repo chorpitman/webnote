@@ -1,29 +1,35 @@
 package com.epam.note.rest.service;
 
 import com.epam.note.rest.model.Note;
+import com.epam.note.service.INoteService;
+import com.epam.note.service.impl.NoteService;
+import com.epam.note.util.EntityConvertor;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-/**
- * Created by Oleg on 30.12.15.
- */
-
 @Path("/note")
 public class NoteRestService {
+
+    //TODO read REST name convention and apply
 
     @DELETE
     @Path("{id}")
     public Response deleteNote(@PathParam("id") int id) {
+        INoteService noteService = new NoteService();
+        noteService.delete(id);
         System.out.println("delete note id = " + id);
         return Response.status(Response.Status.OK).build();
     }
 
+    //update
     @PUT
-    @Path("{id}")
-    public Response updateNote(@PathParam("id") int id) {
-        System.out.println("update note id = " + id);
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response updateNote(Note note) {
+        INoteService noteService = new NoteService();
+        noteService.update(EntityConvertor.convert(note));
+        System.out.println("update note id = " + note);
         return Response.status(Response.Status.OK).build();
     }
 
@@ -31,7 +37,9 @@ public class NoteRestService {
     @Path("/add")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response createNote(Note note) {
-        System.out.println("update note id = " + note);
+        INoteService noteService = new NoteService();
+        noteService.add(EntityConvertor.convert(note));
+        System.out.println("added note = " + note);
         return Response.status(Response.Status.OK).build();
     }
 }

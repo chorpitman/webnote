@@ -15,7 +15,7 @@ public class NoteDao implements INoteDao {
     private final static String SELECT_NOTE = "SELECT * FROM note WHERE id = ?";
     private final static String INSERT = "INSERT INTO note (date_note, title, category, description) VALUES (?, ?, ?, ?)";
     private final static String DELETE = "DELETE FROM note WHERE id = ?";
-    private final static String UPDATE = "UPDATE note SET date_note = ?, title = ?, category=?, description=?";
+    private final static String UPDATE = "UPDATE note SET title = ?, category = ?, description = ? WHERE id = ?";
 
     private Connection connection;
 
@@ -35,34 +35,40 @@ public class NoteDao implements INoteDao {
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
-        }
-        finally {
+        } finally {
             SQLCloser.close(preparedStatement);
         }
     }
 
     @Override
     public void delete(int noteId) {
+        PreparedStatement preparedStatement = null;
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement(DELETE);
+            preparedStatement = connection.prepareStatement(DELETE);
             preparedStatement.setInt(1, noteId);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            SQLCloser.close(preparedStatement);
         }
     }
 
     @Override
     public void update(Note note) {
+        PreparedStatement preparedStatement = null;
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement(UPDATE);
-            preparedStatement.setTimestamp(1, java.sql.Timestamp.from(java.time.Instant.now()));
-            preparedStatement.setString(2, "Happy Birthday Prepared");
-            preparedStatement.setString(3, "private");
-            preparedStatement.setString(4, "My HAPPY BIRTHDAY");
+            preparedStatement = connection.prepareStatement(UPDATE);
+            preparedStatement.setString(1, note.getTitle());
+            preparedStatement.setString(2, note.getCategory());
+            preparedStatement.setString(3, note.getDescription());
+            preparedStatement.setInt(4, note.getId());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
+        }//TODO close all statements and result sets
+        finally {
+            SQLCloser.close(preparedStatement);
         }
     }
 
@@ -84,9 +90,8 @@ public class NoteDao implements INoteDao {
                 notes.add(note);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        finally {
+            e.printStackTrace();//TODO handle all exceptions
+        } finally {
             SQLCloser.close(resultSet);
             SQLCloser.close(statement);
         }
@@ -95,11 +100,13 @@ public class NoteDao implements INoteDao {
 
     @Override
     public Note getById(int notesId) {
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
         Note note = new Note();
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement(SELECT_NOTE);
+            preparedStatement = connection.prepareStatement(SELECT_NOTE);
             preparedStatement.setInt(1, notesId);
-            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 note.setId(resultSet.getInt("id"));
                 note.setDate(resultSet.getDate("date_note"));
@@ -109,6 +116,10 @@ public class NoteDao implements INoteDao {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+        finally {
+            SQLCloser.close(resultSet);
+            SQLCloser.close(preparedStatement);
         }
         return note;
     }
