@@ -8,6 +8,7 @@ import com.epam.note.util.EntityConvertor;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.List;
 
 @Path("/note")
 public class NoteRestService {
@@ -42,4 +43,13 @@ public class NoteRestService {
         System.out.println("added note = " + note);
         return Response.status(Response.Status.OK).build();
     }
+
+    @GET
+    @Path("/get")
+    public Response createNote() {
+        System.out.println("get note = ");
+        return Response.status(Response.Status.OK).build();
+    }
+
+
 }

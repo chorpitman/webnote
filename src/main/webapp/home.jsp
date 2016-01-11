@@ -1,6 +1,7 @@
-<%--<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>--%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
+    <script type="text/javascript" src="js/lib/jquery-2.1.4.min.js"></script>
     <script type="text/javascript" src="js/test.js"></script>
 </head>
 <body>
@@ -17,17 +18,18 @@
         <th>Delete</th>
     </tr>
 
-    <%--<c:forEach var="note" items="${notes}">--%>
-        <%--<tr>--%>
-            <%--<td><c:out value="${note.id}"/></td>--%>
-            <%--<td><c:out value="${note.date}"/></td>--%>
-            <%--<td><c:out value="${note.title}"/></td>--%>
-            <%--<td><c:out value="${note.category}"/></td>--%>
-            <%--<td><c:out value="${note.description}"/></td>--%>
-            <%--<td><a href="#" >edit</a></td>--%>
-            <%--<td><a href="#" >delete</a></td>--%>
-    <%--</c:forEach>--%>
+    <c:forEach var="note" items="${notes}">
+        <tr>
+            <td><c:out value="${note.id}"/></td>
+            <td><c:out value="${note.date}"/></td>
+            <td><c:out value="${note.title}"/></td>
+            <td><c:out value="${note.category}"/></td>
+            <td><c:out value="${note.description}"/></td>
+            <td><a class="edit" href="#" >edit</a></td>
+            <td><a href="#" >delete</a></td>
+    </c:forEach>
 </table>
 <a href="/add">add</a>
+<div id="res"></div>
 </body>
 </html>
