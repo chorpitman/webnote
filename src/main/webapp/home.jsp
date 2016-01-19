@@ -8,6 +8,9 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>Webnote</title>
 
+    <script type="text/javascript" src="../js/lib/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="../js/test.js"></script>
+
     <%--TODO уточнить как правильно уложить библиотеки бутстрапа--%>
 
     <%--<!-- Bootstrap -->--%>
@@ -53,14 +56,14 @@
             <tbody class="text-center">
 
             <c:forEach var="note" items="${notes}">
-                <tr>
+                <tr id="${note.id}" class="note">
                     <td><c:out value="${note.id}"/></td>
                     <td><c:out value="${note.date}"/></td>
                     <td><c:out value="${note.title}"/></td>
                     <td><c:out value="${note.category}"/></td>
                     <td><c:out value="${note.description}"/></td>
-                    <td><a class="edit" href="#">edit</a></td>
-                    <td><a href="#">delete</a></td>
+                    <td><a class="edit" href="#">EDIT</a></td>
+                    <td><a class="delete" id="${note.id}" href="#">DELETE</a></td>
                 </tr>
             </c:forEach>
 
