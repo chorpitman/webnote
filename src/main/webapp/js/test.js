@@ -1,14 +1,14 @@
 $(document).ready(function () {
 
-    $('a.delete').click(function () {
-        var id = $(this).attr('id');
-        var note = $(this);
+    $('button.btn-danger').click(function () {
+        var note = $(this).closest("tr.note");
+        var id = $(note).attr('id');
         $.ajax({
             type: "DELETE",
             url: "/api/note/" + id,
             success: function (data, status, jqXHR) {
                 if (jqXHR.status == 200) {
-                    note.closest("tr.note").remove();
+                    note.remove();
                 }
             },
             error: function(jqXHR, textStatus, errorThrown) {
@@ -16,6 +16,7 @@ $(document).ready(function () {
             }
         });
     });
+
 
 
 });
