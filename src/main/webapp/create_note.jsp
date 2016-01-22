@@ -67,10 +67,10 @@
         <form class="form-horizontal" role="form" id="formId" method="post">
 
             <div class="form-group">
-                <label for="inputTitle" class="col-sm-2 control-label">Title</label>
+                <label class="col-sm-2 control-label">Title</label>
                 <div class="col-sm-10">
                     <input name="tytle" type="text" class="form-control" id="inputTytle"
-                           placeholder="Input tytle for note">
+                           placeholder="Input tytle for noteRest">
                 </div>
             </div>
 
@@ -78,18 +78,18 @@
                 <label for="inputCategory" class="col-sm-2 control-label">Category</label>
                 <div class="col-sm-10">
                     <input name="category" type="text" class="form-control" id="inputCategory"
-                           placeholder="Input category for note">
+                           placeholder="Input category for noteRest">
                 </div>
             </div>
 
             <!-- описание + текст арея -->
             <div class="form-group">
-                <label for="inputDescription" class="col-sm-2 control-label">Description</label>
+                <label class="col-sm-2 control-label">Description</label>
 
                 <!-- текст арея -->
                 <div class="col-sm-10">
                     <textarea class="form-control" rows="3" maxlength="1500"
-                              placeholder="Describe your note"></textarea>
+                              placeholder="Describe your noteRest"></textarea>
                 </div>
                 <!-- <div class = "count btn btn-primary">1500</div> -->
 
@@ -98,7 +98,7 @@
 
             <!-- описание + текст арея -->
             <div class="form-group">
-                <label for="" class="col-sm-2 control-label"></label>
+                <label class="col-sm-2 control-label"></label>
                 <div class="progress col-sm-10">
 
                     <!-- прогресс бар -->
@@ -113,7 +113,7 @@
                 <!-- кнопка   -->
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <button type="submit" class="btn btn-success">add note</button>
+                        <button type="submit" class="btn btn-success">add noteRest</button>
                     </div>
                 </div>
                 <!-- кнопка   -->

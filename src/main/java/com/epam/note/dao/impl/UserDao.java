@@ -1,9 +1,9 @@
 package com.epam.note.dao.impl;
 
 import com.epam.note.dao.IUserDao;
+import com.epam.note.model.User;
 import com.epam.note.model.UserRole;
 import com.epam.note.type.Role;
-import com.epam.note.model.User;
 import com.epam.note.util.SQLCloser;
 
 import java.sql.*;

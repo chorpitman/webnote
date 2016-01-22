@@ -18,13 +18,13 @@
         <th>Delete</th>
     </tr>
 
-    <c:forEach var="note" items="${notes}">
+    <c:forEach var="noteRest" items="${notes}">
         <tr>
-            <td><c:out value="${note.id}"/></td>
-            <td><c:out value="${note.date}"/></td>
-            <td><c:out value="${note.title}"/></td>
-            <td><c:out value="${note.category}"/></td>
-            <td><c:out value="${note.description}"/></td>
+            <td><c:out value="${noteRest.id}"/></td>
+            <td><c:out value="${noteRest.date}"/></td>
+            <td><c:out value="${noteRest.title}"/></td>
+            <td><c:out value="${noteRest.category}"/></td>
+            <td><c:out value="${noteRest.description}"/></td>
             <td><a class="edit" href="#">edit</a></td>
             <td><a href="#">delete</a></td>
         </tr>

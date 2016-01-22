@@ -1,25 +1,31 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Webnote</title>
+    <title>web-notes.com</title>
 
     <script type="text/javascript" src="../js/lib/jquery-2.1.4.min.js"></script>
     <script type="text/javascript" src="../js/test.js"></script>
 
     <!-- Bootstrap -->
     <link href="../js/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <script src="../js/bootstrap/js/bootstrap.min.js"></script>
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <%--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>--%>
+    <%--<script src="../js/lib/jquery.min.js"></script>--%>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
 </head>
 <body>
 <div class="container">
@@ -38,34 +44,32 @@
         </thead>
         <tbody class="text-center">
 
-        <c:forEach var="note" items="${notes}">
-            <tr id="${note.id}" class="note">
-                <td><c:out value="${note.id}"/></td>
-                <td><c:out value="${note.date}"/></td>
-                <td><c:out value="${note.title}"/></td>
-                <td><c:out value="${note.category}"/></td>
-                <td><c:out value="${note.description}"/></td>
+        <c:forEach var="noteRest" items="${notes}">
+            <tr id="${noteRest.id}" class="noteRest">
+                <td><c:out value="${noteRest.id}"/></td>
+                <td><c:out value="${noteRest.date}"/></td>
+                <td><c:out value="${noteRest.title}"/></td>
+                <td><c:out value="${noteRest.category}"/></td>
+                <td><c:out value="${noteRest.description}"/></td>
                 <td>
-                    <button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#myModal">
+                    <button type="button" class="btn btn-success btn-xs editNote" data-toggle="modal"
+                            data-target="#myModal">
                         EDIT
                     </button>
                 </td>
                 <td>
                     <button type="button" class="btn btn-danger btn-xs">DELETE</button>
                 </td>
-
                     <%--<td><a class="edit" href="#myModal">EDIT</a></td>--%>
-                    <%--<td><a class="delete" id="${note.id}" href="#">DELETE</a></td>--%>
+                    <%--<td><a class="delete" id="${noteRest.id}" href="#">DELETE</a></td>--%>
             </tr>
         </c:forEach>
-
-
         </tbody>
 
     </table>
     <a href="/add" class="btn btn-primary" role="button">ADD NEW NOTE</a>
 
-    <!-- Modal -->
+    <!-- Modal START -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -83,10 +87,10 @@
                             <form class="form-horizontal" role="form" id="formId" method="post">
 
                                 <div class="form-group">
-                                    <label for="inputTitle" class="col-sm-2 control-label">Title</label>
+                                    <label class="col-sm-2 control-label">Title</label>
                                     <div class="col-sm-10">
                                         <input name="tytle" type="text" class="form-control" id="inputTytle"
-                                               placeholder="Input tytle for note">
+                                               placeholder="Input tytle for noteRest">
                                     </div>
                                 </div>
 
@@ -94,18 +98,18 @@
                                     <label for="inputCategory" class="col-sm-2 control-label">Category</label>
                                     <div class="col-sm-10">
                                         <input name="category" type="text" class="form-control" id="inputCategory"
-                                               placeholder="Input category for note">
+                                               placeholder="Input category for noteRest">
                                     </div>
                                 </div>
 
                                 <!-- описание + текст арея -->
                                 <div class="form-group">
-                                    <label for="inputDescription" class="col-sm-2 control-label">Description</label>
+                                    <label class="col-sm-2 control-label">Description</label>
 
                                     <!-- текст арея -->
                                     <div class="col-sm-10">
                     <textarea class="form-control" rows="3" maxlength="1500"
-                              placeholder="Describe your note"></textarea>
+                              placeholder="Describe your noteRest" id="textArea" name="textArea"></textarea>
                                     </div>
                                     <!-- <div class = "count btn btn-primary">1500</div> -->
 
@@ -126,11 +130,10 @@
                                 <%--</div>--%>
                                 <%--<!-- прогресс бар -->--%>
 
-
                                 <%--<!-- кнопка   -->--%>
                                 <%--<div class="form-group">--%>
                                 <%--<div class="col-sm-offset-2 col-sm-10">--%>
-                                <%--<button type="submit" class="btn btn-success">add note</button>--%>
+                                <%--<button type="submit" class="btn btn-success">add noteRest</button>--%>
                                 <%--</div>--%>
                                 <%--</div>--%>
                                 <%--<!-- кнопка   -->--%>
@@ -143,19 +146,12 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-primary" id="saveChangesOnNote">Save changes</button>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Modal -->
+    <!-- Modal END-->
 </div>
-
-
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="../js/bootstrap/js/bootstrap.min.js"></script>
-
 </body>
 </html>

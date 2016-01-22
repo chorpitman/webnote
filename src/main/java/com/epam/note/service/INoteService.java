@@ -14,5 +14,7 @@ public interface INoteService {
 
     void update(Note note);
 
+    Note getById(int id);
+
 
 }

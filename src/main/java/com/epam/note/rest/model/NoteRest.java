@@ -1,12 +1,10 @@
 package com.epam.note.rest.model;
 
-import javax.xml.bind.annotation.XmlRootElement;
-
-
 //@XmlRootElement
-public class Note {
+public class NoteRest {
     private Integer id;
     private String title;
+    private String description;
     private String category;
 
     public Integer getId() {
@@ -16,8 +14,6 @@ public class Note {
     public void setId(Integer id) {
         this.id = id;
     }
-
-    private String description;
 
     public String getDescription() {
         return description;
@@ -45,7 +41,7 @@ public class Note {
 
     @Override
     public String toString() {
-        return "Note{" +
+        return "NoteRest{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", category='" + category + '\'' +

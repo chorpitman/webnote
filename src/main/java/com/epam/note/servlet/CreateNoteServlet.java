@@ -4,7 +4,6 @@ import com.epam.note.model.Note;
 import com.epam.note.service.INoteService;
 import com.epam.note.service.impl.NoteService;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;

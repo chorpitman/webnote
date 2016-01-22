@@ -2,7 +2,6 @@ package com.epam.note.service.impl;
 
 import com.epam.note.dao.INoteDao;
 import com.epam.note.dao.impl.NoteDao;
-import com.epam.note.dao.impl.UserDao;
 import com.epam.note.model.Note;
 import com.epam.note.service.INoteService;
 
@@ -31,5 +30,10 @@ public class NoteService implements INoteService {
     @Override
     public void update(Note note){
         noteDao.update(note);
+    }
+
+    @Override
+    public Note getById(int id) {
+        return noteDao.getById(id);
     }
 }

@@ -9,6 +9,6 @@ public interface INoteDao {
     public void add(Note note);
     public void delete(int noteId);
     public void update(Note note);
-    public Note getById(int notesId);
+    public Note getById(int noteId);
     public List<Note> getAll();
 }

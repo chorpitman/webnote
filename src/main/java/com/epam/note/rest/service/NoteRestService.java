@@ -1,6 +1,6 @@
 package com.epam.note.rest.service;
 
-import com.epam.note.rest.model.Note;
+import com.epam.note.rest.model.NoteRest;
 import com.epam.note.service.INoteService;
 import com.epam.note.service.impl.NoteService;
 import com.epam.note.util.EntityConvertor;
@@ -8,7 +8,6 @@ import com.epam.note.util.EntityConvertor;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.List;
 
 @Path("/note")
 public class NoteRestService {
@@ -27,29 +26,30 @@ public class NoteRestService {
     //update
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response updateNote(Note note) {
+    public Response updateNote(NoteRest noteRest) {
         INoteService noteService = new NoteService();
-        noteService.update(EntityConvertor.convert(note));
-        System.out.println("update note id = " + note);
+        noteService.update(EntityConvertor.convert(noteRest));
+        System.out.println("update noteRest id = " + noteRest);
         return Response.status(Response.Status.OK).build();
     }
 
     @POST
     @Path("/add")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response createNote(Note note) {
+    public Response createNote(NoteRest noteRest) {
         INoteService noteService = new NoteService();
-        noteService.add(EntityConvertor.convert(note));
-        System.out.println("added note = " + note);
+        noteService.add(EntityConvertor.convert(noteRest));
+        System.out.println("added noteRest = " + noteRest.getId() + noteRest.getCategory() + noteRest.getTitle() + noteRest.getDescription());
         return Response.status(Response.Status.OK).build();
     }
 
     @GET
-    @Path("/get")
-    public Response createNote() {
-        System.out.println("get note = ");
-        return Response.status(Response.Status.OK).build();
+    @Path("{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response createNoteResponse(@PathParam("id") int id) {
+        INoteService noteService = new NoteService();
+        NoteRest noteRest = EntityConvertor.convertToNote(noteService.getById(id));
+        System.out.println("get noteRest = " + id);
+        return Response.ok(noteRest).build();
     }
-
-
 }

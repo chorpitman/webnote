@@ -104,13 +104,13 @@ public class NoteDao implements INoteDao {
     }
 
     @Override
-    public Note getById(int notesId) {
+    public Note getById(int noteId) {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         Note note = new Note();
         try {
             preparedStatement = connection.prepareStatement(SELECT_NOTE);
-            preparedStatement.setInt(1, notesId);
+            preparedStatement.setInt(1, noteId);
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 note.setId(resultSet.getInt("id"));

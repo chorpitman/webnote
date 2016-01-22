@@ -1,18 +1,29 @@
 package com.epam.note.util;
 
 import com.epam.note.model.Note;
+import com.epam.note.rest.model.NoteRest;
+
 //convert format From RestService to
 public class EntityConvertor {
     private EntityConvertor(){}
 
-    public static Note convert(com.epam.note.rest.model.Note note) {
+    public static Note convert(NoteRest noteRest) {
 
         Note res = new Note();
-        res.setId(note.getId());
-        res.setTitle(note.getTitle());
-        res.setDescription(note.getDescription());
-        res.setCategory(note.getCategory());
+        res.setId(noteRest.getId());
+        res.setTitle(noteRest.getTitle());
+        res.setDescription(noteRest.getDescription());
+        res.setCategory(noteRest.getCategory());
         return res;
+    }
+
+    public static NoteRest convertToNote(Note note) {
+        NoteRest result = new NoteRest();
+        result.setId(note.getId());
+        result.setCategory(note.getCategory());
+        result.setDescription(note.getDescription());
+        result.setTitle(note.getTitle());
+        return result;
     }
 
 
