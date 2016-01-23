@@ -1,11 +1,14 @@
 package com.epam.note.rest.model;
 
+import java.util.Date;
+
 //@XmlRootElement
 public class NoteRest {
     private Integer id;
+    private Date date;
     private String title;
-    private String description;
     private String category;
+    private String description;
 
     public Integer getId() {
         return id;
@@ -15,12 +18,12 @@ public class NoteRest {
         this.id = id;
     }
 
-    public String getDescription() {
-        return description;
+    public Date getDate() {
+        return date;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     public String getTitle() {
@@ -39,10 +42,19 @@ public class NoteRest {
         this.category = category;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     @Override
     public String toString() {
         return "NoteRest{" +
                 "id=" + id +
+                " date=" + date +
                 ", title='" + title + '\'' +
                 ", category='" + category + '\'' +
                 ", description='" + description + '\'' +

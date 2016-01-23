@@ -44,13 +44,13 @@
         </thead>
         <tbody class="text-center">
 
-        <c:forEach var="noteRest" items="${notes}">
-            <tr id="${noteRest.id}" class="noteRest">
-                <td><c:out value="${noteRest.id}"/></td>
-                <td><c:out value="${noteRest.date}"/></td>
-                <td><c:out value="${noteRest.title}"/></td>
-                <td><c:out value="${noteRest.category}"/></td>
-                <td><c:out value="${noteRest.description}"/></td>
+        <c:forEach var="note" items="${notes}">
+            <tr id="${note.id}" class="note">
+                <td><c:out value="${note.id}"/></td>
+                <td><c:out value="${note.date}"/></td>
+                <td class="note_title"><c:out value="${note.title}"/></td>
+                <td class="note_category"><c:out value="${note.category}"/></td>
+                <td class="note_description"><c:out value="${note.description}"/></td>
                 <td>
                     <button type="button" class="btn btn-success btn-xs editNote" data-toggle="modal"
                             data-target="#myModal">
@@ -61,16 +61,20 @@
                     <button type="button" class="btn btn-danger btn-xs">DELETE</button>
                 </td>
                     <%--<td><a class="edit" href="#myModal">EDIT</a></td>--%>
-                    <%--<td><a class="delete" id="${noteRest.id}" href="#">DELETE</a></td>--%>
+                    <%--<td><a class="delete" id="${note.id}" href="#">DELETE</a></td>--%>
             </tr>
         </c:forEach>
         </tbody>
 
     </table>
-    <a href="/add" class="btn btn-primary" role="button">ADD NEW NOTE</a>
+    <button type="button" class="btn btn-info btn-lg editNote" data-toggle="modal"
+            data-target="#myModalAdd">
+        ADD NEW NOTE
+    </button>
 
-    <!-- Modal START -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <!-- Modal START (FOR EDIT BUTTON)-->
+    <div class="modal fade" id="myModal" tabindex="-1" role="
+    dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -78,19 +82,27 @@
                         <span aria-hidden="true">web-notes.com</span>
                         <span class="sr-only">Close</span>
                     </button>
-                    <h4 class="modal-title" id="myModalLabel">EDIT NOTE</h4>
+                    <h4 class="modal-title" id="myModalLabel">ADD NOTE SERVICE</h4>
                 </div>
                 <div class="modal-body">
-                    <%--боди mодального окна--%>
+                    <%--body of modal window  START--%>
                     <div class="container">
                         <div class="col-sm-6">
                             <form class="form-horizontal" role="form" id="formId" method="post">
 
+                                <div class="form-group hidden">
+                                    <label class="col-sm-2 control-label">id</label>
+                                    <div class="col-sm-10">
+                                        <input name="id" type="text" class="form-control" id="idNote"
+                                               placeholder="">
+                                    </div>
+                                </div>
+
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">Title</label>
                                     <div class="col-sm-10">
-                                        <input name="tytle" type="text" class="form-control" id="inputTytle"
-                                               placeholder="Input tytle for noteRest">
+                                        <input name="title" type="text" class="form-control" id="inputTitle"
+                                               placeholder="Input title for note">
                                     </div>
                                 </div>
 
@@ -98,7 +110,7 @@
                                     <label for="inputCategory" class="col-sm-2 control-label">Category</label>
                                     <div class="col-sm-10">
                                         <input name="category" type="text" class="form-control" id="inputCategory"
-                                               placeholder="Input category for noteRest">
+                                               placeholder="Input category for note">
                                     </div>
                                 </div>
 
@@ -109,49 +121,93 @@
                                     <!-- текст арея -->
                                     <div class="col-sm-10">
                     <textarea class="form-control" rows="3" maxlength="1500"
-                              placeholder="Describe your noteRest" id="textArea" name="textArea"></textarea>
+                              placeholder="Describe your note" id="description" name="description"></textarea>
                                     </div>
-                                    <!-- <div class = "count btn btn-primary">1500</div> -->
-
-                                    <!-- текст арея -->
                                 </div>
 
-                                <!-- описание + текст арея -->
-                                <%--<div class="form-group">--%>
-                                <%--<label for="" class="col-sm-2 control-label"></label>--%>
-                                <%--<div class="progress col-sm-10">--%>
-
-                                <%--<!-- прогресс бар -->--%>
-                                <%--<div class="progress-bar progress-bar-striped active" role="progressbar"--%>
-                                <%--aria-valuenow="0"--%>
-                                <%--aria-valuemin="0" aria-valuemax="1500" style="width: 0%;">0%--%>
-                                <%--</div>--%>
-                                <%--<span class="current-value">0%</span>--%>
-                                <%--</div>--%>
-                                <%--<!-- прогресс бар -->--%>
-
-                                <%--<!-- кнопка   -->--%>
-                                <%--<div class="form-group">--%>
-                                <%--<div class="col-sm-offset-2 col-sm-10">--%>
-                                <%--<button type="submit" class="btn btn-success">add noteRest</button>--%>
-                                <%--</div>--%>
-                                <%--</div>--%>
-                                <%--<!-- кнопка   -->--%>
-                                <%--</div>--%>
                             </form>
                         </div>
                     </div>
-                    <%--боди mодального окна--%>
-
+                    <%--body of modal window END--%>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" id="saveChangesOnNote">Save changes</button>
+                    <button type="button" class="btn btn-primary" id="saveChangesOnNote" data-dismiss="modal">Save changes</button>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Modal END-->
+    <!-- Modal END (FOR EDIT BUTTON)-->
+
+    <!-- Modal START (FOR ADD BUTTON)-->
+    <div class="modal fade" id="myModalAdd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">web-notes.com</span>
+                        <span class="sr-only">web-notes.com add</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabelAdd">ADD NOTE SERVICE</h4>
+                </div>
+                <div class="modal-body">
+                    <%--body of modal window  START--%>
+                    <div class="container">
+                        <div class="col-sm-6">
+                            <form class="form-horizontal" role="form" id="addFormId" method="post">
+
+                                <%--<div class="form-group">--%>
+                                    <%--<label class="col-sm-2 control-label">id</label>--%>
+                                    <%--<div class="col-sm-10">--%>
+                                        <%--<input name="id" type="text" class="form-control" id="addIdNote"--%>
+                                               <%--placeholder="id">--%>
+                                    <%--</div>--%>
+                                <%--</div>--%>
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">Title</label>
+                                    <div class="col-sm-10">
+                                        <input name="title" type="text" class="form-control" id="addInputTitle"
+                                               placeholder="Input title for note">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="inputCategory" class="col-sm-2 control-label">Category</label>
+                                    <div class="col-sm-10">
+                                        <input name="category" type="text" class="form-control" id="addInputCategory"
+                                               placeholder="Input category for note">
+                                    </div>
+                                </div>
+
+                                <!-- описание + текст арея -->
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">Description</label>
+
+                                    <!-- текст арея -->
+                                    <div class="col-sm-10">
+                    <textarea class="form-control" rows="6" maxlength="1500"
+                              placeholder="Describe your note" id="addFormDescription" name="description"></textarea>
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                    <%--body of modal window END--%>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="saveAddNote" data-dismiss="modal">Save note</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal END (FOR ADD BUTTON)-->
+
+
+
+
 </div>
 </body>
 </html>

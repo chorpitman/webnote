@@ -1,7 +1,7 @@
 $(document).ready(function () {
-
+    //delete button
     $('button.btn-danger').click(function () {
-        var note = $(this).closest("tr.noteRest");
+        var note = $(this).closest("tr.note");
         var id = $(note).attr('id');
         $.ajax({
             type: "DELETE",
@@ -17,33 +17,81 @@ $(document).ready(function () {
         });
     });
 
-    //start write new function
+    //delete edit get all fields in form
     $('button.btn-success').click(function () {
-        var note = $(this).closest("tr.noteRest");
+        var note = $(this).closest("tr.note");
         var id = $(note).attr("id");
         $.ajax({
             type: "GET",
-            url: "api/note/" + id,
+            url: "/api/note/" + id,
             dataType: "json",
             success: function (data, status, jgXHR) {
                 if (jgXHR.status == 200) {
-                    $('#inputTytle').val(data.title);
+                    $('#idNote').val(data.id);
+                    $('#inputTitle').val(data.title);
                     $('#inputCategory').val(data.category);
-                    $('#textArea').val(data.description);
+                    $('#description').val(data.description);
                 }
             }
         })
     });
 
+    //save changes
     $("#saveChangesOnNote").on('click', function () {
+        //var note = $("#formId").serialize();
+        //console.log(JSON.stringify(note));
+        var note = $(this).closest("tr.note");
+        var id = $(note).attr('id');
+
+        var obj = {
+            id: $('#idNote').val(),
+            title: $('#inputTitle').val(),
+            category: $('#inputCategory').val(),
+            description: $('#description').val()
+        };
+
         $.ajax({
-            utl: "/api/note",
             type: "PUT",
-            dataType: 'json',
-            data: $("#formId").serialize(),
-            success: function (result) {
-                alert("djfjsdklfjsldjfsdljs")
-                console.log(result);
+            url: "/api/note",
+            contentType: 'application/json',
+            data: JSON.stringify(obj),
+            success: function (data, status, jqXHR) {
+                if (jqXHR.status == 200) {
+                    //refresh
+                    var note = $('#' + obj.id);
+                    note.find('.note_title').text(obj.title);
+                    note.find('.note_category').text(obj.category);
+                    note.find('.note_description').text(obj.description);
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.error(textStatus);
+            }
+
+        });
+    })
+
+    $("#saveAddNote").on('click', function() {
+
+        var obj = {
+            title: $('addInputTitle'),
+            category: $('addInputCategory'),
+            description: $('addFormDescription')
+        };
+
+        $.ajax({
+            type: "POST",
+            url: "/api/note/add",
+            contentType: 'application/json',
+            data: JSON.stringify(obj),
+            success: function(data, status, jqXHR) {
+                if (jqXHR.status == 200) {
+                    //refresh
+                    var note = $('#' + obj.id);
+                    note.find('.note_title').text(obj.title);
+                    note.find('.note_category').text(obj.category);
+                    note.find('.note_description').text(obj.description);
+                }
             }
         })
     })

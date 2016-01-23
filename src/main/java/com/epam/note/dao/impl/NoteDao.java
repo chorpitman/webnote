@@ -24,11 +24,11 @@ public class NoteDao implements INoteDao {
     private Connection connection;
 
     @Override
-    public void add(Note note) {
+    public Note add(Note note) {
         PreparedStatement preparedStatement = null;
         try {
             preparedStatement = connection.prepareStatement(INSERT);
-            preparedStatement.setDate(1, new Date(note.getDate().getTime()));
+            preparedStatement.setDate(1, new Date(System.currentTimeMillis()));
             preparedStatement.setString(2, note.getTitle());
             preparedStatement.setString(3, note.getCategory());
             preparedStatement.setString(4, note.getDescription());
@@ -38,6 +38,7 @@ public class NoteDao implements INoteDao {
         } finally {
             SQLCloser.close(preparedStatement);
         }
+        return note;
     }
 
     @Override
