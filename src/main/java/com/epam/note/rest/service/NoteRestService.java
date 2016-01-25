@@ -1,6 +1,6 @@
 package com.epam.note.rest.service;
 
-import com.epam.note.rest.model.NoteRest;
+import com.epam.note.dto.NoteDto;
 import com.epam.note.service.INoteService;
 import com.epam.note.service.impl.NoteService;
 import com.epam.note.util.EntityConvertor;
@@ -26,19 +26,19 @@ public class NoteRestService {
     //update
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response updateNote(NoteRest noteRest) {
+    public Response updateNote(NoteDto noteDto) {
         INoteService noteService = new NoteService();
-        noteService.update(EntityConvertor.convert(noteRest));
-        System.out.println("update noteRest id = " + noteRest);
+        noteService.update(EntityConvertor.convert(noteDto));
+        System.out.println("update noteDto id = " + noteDto);
         return Response.status(Response.Status.OK).build();
     }
 
     @POST
     @Path("/add")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response createNote(NoteRest noteRest) {
+    public Response createNote(NoteDto noteDto) {
         INoteService noteService = new NoteService();
-        int id = noteService.add(EntityConvertor.convert(noteRest));
+        int id = noteService.add(EntityConvertor.convert(noteDto));
         return Response.ok(String.valueOf(id)).build();
     }
 
@@ -47,8 +47,8 @@ public class NoteRestService {
     @Produces(MediaType.APPLICATION_JSON)
     public Response createNoteResponse(@PathParam("id") int id) {
         INoteService noteService = new NoteService();
-        NoteRest noteRest = EntityConvertor.convertToNote(noteService.getById(id));
-        System.out.println("get noteRest = " + id);
-        return Response.ok(noteRest).build();
+        NoteDto noteDto = EntityConvertor.convertToNote(noteService.getById(id));
+        System.out.println("get noteDto = " + id);
+        return Response.ok(noteDto).build();
     }
 }

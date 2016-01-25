@@ -63,7 +63,7 @@ public class Note {
 
     @Override
     public String toString() {
-        return "NoteRest{" +
+        return "NoteDto{" +
                 "id=" + id +
                 ", date=" + date +
                 ", title='" + title + '\'' +

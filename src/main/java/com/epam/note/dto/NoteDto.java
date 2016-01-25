@@ -1,9 +1,9 @@
-package com.epam.note.rest.model;
+package com.epam.note.dto;
 
 import java.util.Date;
 
 //@XmlRootElement
-public class NoteRest {
+public class NoteDto {
     private Integer id;
     private Long date;
     private String title;
@@ -52,7 +52,7 @@ public class NoteRest {
 
     @Override
     public String toString() {
-        return "NoteRest{" +
+        return "NoteDto{" +
                 "id=" + id +
                 " date=" + date +
                 ", title='" + title + '\'' +
