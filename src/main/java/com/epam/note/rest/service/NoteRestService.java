@@ -36,12 +36,10 @@ public class NoteRestService {
     @POST
     @Path("/add")
     @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
     public Response createNote(NoteRest noteRest) {
         INoteService noteService = new NoteService();
-        noteService.add(EntityConvertor.convert(noteRest));
-        System.out.println("added noteRest = " + noteRest.getId() + noteRest.getCategory() + noteRest.getTitle() + noteRest.getDescription() + noteRest.getDate());
-        return Response.status(Response.Status.OK).build();
+        int id = noteService.add(EntityConvertor.convert(noteRest));
+        return Response.ok(String.valueOf(id)).build();
     }
 
     @GET

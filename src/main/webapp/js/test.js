@@ -70,11 +70,12 @@ $(document).ready(function () {
 
         });
     })
-
+        //add new note
     $("#saveAddNote").on('click', function() {
 
         var obj = {
-            title: $('addInputTitle'),
+            date: $(new Date().getTime()),
+            title: $('addInputTitle').val(),
             category: $('addInputCategory'),
             description: $('addFormDescription')
         };
@@ -86,8 +87,10 @@ $(document).ready(function () {
             data: JSON.stringify(obj),
             success: function(data, status, jqXHR) {
                 if (jqXHR.status == 200) {
+                    console.log(obj);
                     //refresh
                     var note = $('#' + obj.id);
+                    //note.find('.note_date').text(obj.date);
                     note.find('.note_title').text(obj.title);
                     note.find('.note_category').text(obj.category);
                     note.find('.note_description').text(obj.description);

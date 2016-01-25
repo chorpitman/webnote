@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Note {
     private Integer id;
-    private Date date;
+    private Long date;
     private String title;
     private String category;
     private String description;
@@ -13,7 +13,7 @@ public class Note {
 
     }
 
-    public Note(Integer id, Date date, String title, String category, String description) {
+    public Note(Integer id, Long date, String title, String category, String description) {
         this.id = id;
         this.date = date;
         this.title = title;
@@ -29,11 +29,11 @@ public class Note {
         this.id = id;
     }
 
-    public Date getDate() {
+    public Long getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(Long date) {
         this.date = date;
     }
 

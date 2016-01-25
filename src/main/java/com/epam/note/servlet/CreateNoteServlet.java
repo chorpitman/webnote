@@ -24,7 +24,7 @@ public class CreateNoteServlet extends HttpServlet {
 
 //        TODO validate!!!!
         if (title != null && !title.isEmpty()) {
-            Note note = new Note(null, new Date(), title, category, desc);
+            Note note = new Note(null, new Date().getTime(), title, category, desc);
             noteService.add(note);
             response.sendRedirect("/");
         } else {

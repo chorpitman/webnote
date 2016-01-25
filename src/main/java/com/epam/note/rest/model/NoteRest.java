@@ -5,7 +5,7 @@ import java.util.Date;
 //@XmlRootElement
 public class NoteRest {
     private Integer id;
-    private Date date;
+    private Long date;
     private String title;
     private String category;
     private String description;
@@ -18,11 +18,11 @@ public class NoteRest {
         this.id = id;
     }
 
-    public Date getDate() {
+    public Long getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(Long date) {
         this.date = date;
     }
 

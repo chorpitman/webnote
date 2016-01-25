@@ -8,7 +8,7 @@ public interface INoteService {
 
     List<Note> getNotes();
 
-    void add(Note note);
+    int add(Note note);
 
     void delete(int id);
 

@@ -16,6 +16,8 @@ public class NoteDao implements INoteDao {
     private final static String INSERT = "INSERT INTO note (note_date, title, category, description) VALUES (?, ?, ?, ?)";
     private final static String DELETE = "DELETE FROM note WHERE id = ?";
     private final static String UPDATE = "UPDATE note SET title = ?, category = ?, description = ? WHERE id = ?";
+    private final static String GET_LAST_ID = "SELECT LAST_INSERT_ID() id";
+
 
     public NoteDao() {
         connection = DBConnection.getConnection();
@@ -24,8 +26,11 @@ public class NoteDao implements INoteDao {
     private Connection connection;
 
     @Override
-    public Note add(Note note) {
+    public int add(Note note) {
         PreparedStatement preparedStatement = null;
+        Statement statement = null;
+        ResultSet resultSet = null;
+        int noteId = 0;
         try {
             preparedStatement = connection.prepareStatement(INSERT);
             preparedStatement.setDate(1, new Date(System.currentTimeMillis()));
@@ -33,12 +38,21 @@ public class NoteDao implements INoteDao {
             preparedStatement.setString(3, note.getCategory());
             preparedStatement.setString(4, note.getDescription());
             preparedStatement.executeUpdate();
+
+            //find last id
+            statement = connection.createStatement();
+            resultSet =statement.executeQuery(GET_LAST_ID);
+            while (resultSet.next()) {
+                noteId = resultSet.getInt("id");
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             SQLCloser.close(preparedStatement);
+            SQLCloser.close(statement);
+            SQLCloser.close(resultSet);
         }
-        return note;
+        return noteId;
     }
 
     @Override
@@ -89,7 +103,7 @@ public class NoteDao implements INoteDao {
             while (resultSet.next()) {
                 Note note = new Note();
                 note.setId(resultSet.getInt("id"));
-                note.setDate(resultSet.getDate("note_date"));
+                note.setDate(resultSet.getDate("note_date").getTime());
                 note.setTitle(resultSet.getString("title"));
                 note.setCategory(resultSet.getString("category"));
                 note.setDescription(resultSet.getString("description"));
@@ -115,7 +129,7 @@ public class NoteDao implements INoteDao {
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 note.setId(resultSet.getInt("id"));
-                note.setDate(resultSet.getDate("note_date"));
+                note.setDate(resultSet.getDate("note_date").getTime());
                 note.setTitle(resultSet.getString("title"));
                 note.setCategory(resultSet.getString("category"));
                 note.setDescription(resultSet.getString("description"));

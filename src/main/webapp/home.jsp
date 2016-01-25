@@ -47,7 +47,7 @@
         <c:forEach var="note" items="${notes}">
             <tr id="${note.id}" class="note">
                 <td><c:out value="${note.id}"/></td>
-                <td><c:out value="${note.date}"/></td>
+                <td class="note_date"><c:out value="${note.date}"/></td>
                 <td class="note_title"><c:out value="${note.title}"/></td>
                 <td class="note_category"><c:out value="${note.category}"/></td>
                 <td class="note_description"><c:out value="${note.description}"/></td>

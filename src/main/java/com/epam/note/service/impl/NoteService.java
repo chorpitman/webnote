@@ -12,14 +12,12 @@ public class NoteService implements INoteService {
 
     @Override
     public List<Note> getNotes() {
-//        UserDao userDao = new UserDao();
-//        System.out.println(userDao.getById(1));
          return noteDao.getAll();
     }
 
     @Override
-    public void add(Note note) {
-        noteDao.add(note);
+    public int add(Note note) {
+        return noteDao.add(note);
     }
 
     @Override
