@@ -9,7 +9,7 @@
     <title>web-notes.com</title>
 
     <script type="text/javascript" src="../js/lib/jquery-2.1.4.min.js"></script>
-    <script type="text/javascript" src="../js/test.js"></script>
+    <script type="text/javascript" src="../js/main.js"></script>
 
     <!-- Bootstrap -->
     <link href="../js/bootstrap/css/bootstrap.min.css" rel="stylesheet">
