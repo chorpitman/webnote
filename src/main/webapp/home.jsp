@@ -1,4 +1,5 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -59,6 +60,7 @@
 
     <jsp:include page="editNote.jsp"/>
     <jsp:include page="addNote.jsp"/>
+    <jsp:include page="itemNote.jsp"/>
 
 </div>
 </body>

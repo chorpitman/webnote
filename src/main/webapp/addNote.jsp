@@ -24,7 +24,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="inputCategory" class="col-sm-2 control-label">Category</label>
+                                <label class="col-sm-2 control-label">Category</label>
                                 <div class="col-sm-10">
                                     <input name="category" type="text" class="form-control" id="addInputCategory"
                                            placeholder="Input category for note">
