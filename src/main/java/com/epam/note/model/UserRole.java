@@ -2,9 +2,6 @@ package com.epam.note.model;
 
 import com.epam.note.type.Role;
 
-/**
- * Created by Oleg on 06.01.16.
- */
 public class UserRole {
     private int id;
     private Role role;
