@@ -1,4 +1,3 @@
-DROP DATABASE IF EXISTS notes;
 create database if not exists notes DEFAULT CHARACTER SET utf8;
 use notes;
 
