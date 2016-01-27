@@ -3,17 +3,12 @@ package com.epam.note.model;
 //TODO implement: id, login, pwd
 public class User {
     private Integer id;
+    private String name;
     private String login;
     private String password;
     private UserRole role;
 
     public User() {
-    }
-
-    public User(Integer id, String login, String password) {
-        this.id = id;
-        this.login = login;
-        this.password = password;
     }
 
     public Integer getId() {
@@ -22,6 +17,14 @@ public class User {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getLogin() {
@@ -52,6 +55,7 @@ public class User {
     public String toString() {
         return "User{" +
                 ", id=" + id +
+                ", name='" + name + '\'' +
                 ", login='" + login + '\'' +
                 ", password='" + password + '\'' +
                 ", user role=" + role + '\'' +
