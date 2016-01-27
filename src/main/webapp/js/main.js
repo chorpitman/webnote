@@ -74,7 +74,7 @@ $(document).ready(function () {
     $("#saveAddNote").on('click', function () {
 
         var obj = {
-            date: new Date().getTime(),
+            date: new Date(),
             title: $('#addInputTitle').val(),
             category: $('#addInputCategory').val(),
             description: $('#addFormDescription').val()
@@ -105,5 +105,5 @@ $(document).ready(function () {
                 console.error(textStatus);
             }
         });
-    });
+    })
 });

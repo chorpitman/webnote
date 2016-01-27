@@ -103,7 +103,7 @@ public class NoteDao implements INoteDao {
             while (resultSet.next()) {
                 Note note = new Note();
                 note.setId(resultSet.getInt("id"));
-                note.setDate(resultSet.getDate("note_date").getTime());
+                note.setDate(resultSet.getDate("note_date"));
                 note.setTitle(resultSet.getString("title"));
                 note.setCategory(resultSet.getString("category"));
                 note.setDescription(resultSet.getString("description"));
@@ -129,7 +129,7 @@ public class NoteDao implements INoteDao {
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 note.setId(resultSet.getInt("id"));
-                note.setDate(resultSet.getDate("note_date").getTime());
+                note.setDate(resultSet.getDate("note_date"));
                 note.setTitle(resultSet.getString("title"));
                 note.setCategory(resultSet.getString("category"));
                 note.setDescription(resultSet.getString("description"));

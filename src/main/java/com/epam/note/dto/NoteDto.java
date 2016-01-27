@@ -5,7 +5,7 @@ import java.util.Date;
 //@XmlRootElement
 public class NoteDto {
     private Integer id;
-    private Long date;
+    private Date date;
     private String title;
     private String category;
     private String description;
@@ -18,11 +18,11 @@ public class NoteDto {
         this.id = id;
     }
 
-    public Long getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(Long date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
