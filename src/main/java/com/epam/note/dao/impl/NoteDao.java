@@ -19,11 +19,11 @@ public class NoteDao implements INoteDao {
     private final static String GET_LAST_ID = "SELECT LAST_INSERT_ID() id";
 
 
+    private Connection connection;
+
     public NoteDao() {
         connection = DBConnection.getConnection();
     }
-
-    private Connection connection;
 
     @Override
     public int add(Note note) {

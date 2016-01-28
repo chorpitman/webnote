@@ -4,6 +4,7 @@ import com.epam.note.dao.IUserDao;
 import com.epam.note.model.User;
 import com.epam.note.model.UserRole;
 import com.epam.note.type.Role;
+import com.epam.note.util.DBConnection;
 import com.epam.note.util.SQLCloser;
 
 import java.sql.*;
@@ -18,9 +19,14 @@ public class UserDao implements IUserDao {
     private final static String INSERT = "INSERT INTO user (login, password, role_id) VALUES (?, ?, ?)";
     private final static String DELETE = "DELETE FROM user WHERE id = ?";
     private final static String UPDATE = "UPDATE user SET login = ?, password = ?, role_id = ? WHERE id = ?";
-    private final static String SELECT_LOGIN = "SELECT login, password FROM User WHERE login = ?";
+    //new implementation
+    private final static String GET_USER = "SELECT login, password FROM User WHERE login = ? AND password =?";
 
     private Connection connection;
+
+    public UserDao() {
+        connection = DBConnection.getConnection();
+    }
 
     @Override
     public List<User> getAllUser() {
@@ -122,15 +128,17 @@ public class UserDao implements IUserDao {
     }
 
     @Override
-    public User getLogin(String login) {
+    public User getUser(String login, String pwd) {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
-        User user = new User();
+        User user = null;
         try {
-            preparedStatement = connection.prepareStatement(SELECT_LOGIN);
+            preparedStatement = connection.prepareStatement(GET_USER);
             preparedStatement.setString(1, login);
+            preparedStatement.setString(2, pwd);
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
+                user = new User();
                 user.setLogin(resultSet.getString("login"));
                 user.setPassword(resultSet.getString("password"));
             }

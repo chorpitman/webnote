@@ -20,7 +20,6 @@ import javax.ws.rs.core.Response;
 public class NoteRestService {
 
     //TODO read REST name convention and apply
-
     @DELETE
     @Path("{id}")
     public Response deleteNote(@PathParam("id") int id) {

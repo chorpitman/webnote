@@ -17,27 +17,26 @@
 
 </head>
 <body>
-<div>
-    <form class="form-horizontal col-lg-10" role="form">
-        <div class="form-group">
-            <label for="inputEmail" class="col-sm-2 control-label">Email</label>
-            <div class="col-sm-10">
-                <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+    <div>
+        <form class="form-horizontal col-lg-10" role="form" method="post" action="/login">
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Email</label>
+                <div class="col-sm-10">
+                    <input  class="form-control" NAME="inputEmail" placeholder="Email" value="admin">
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label for="inputPassword" class="col-sm-2 control-label">Password</label>
-            <div class="col-sm-10">
-                <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Password</label>
+                <div class="col-sm-10">
+                    <input type="password" class="form-control" NAME="inputPassword" placeholder="Password" value="qwerty">
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-                <input type="submit" class="btn btn-default">Sign in</input>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <input type="submit" class="btn btn-default">Sign in</input>
+                </div>
             </div>
-        </div>
-    </form>
-
-</div>
+        </form>
+    </div>
 </body>
 </html>
