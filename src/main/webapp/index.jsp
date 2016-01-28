@@ -17,10 +17,11 @@
 
 </head>
 <body>
-    <div>
+    <div class="container">
+        <h1 class="header">LOGIN</h1>
         <form class="form-horizontal col-lg-10" role="form" method="post" action="/login">
             <div class="form-group">
-                <label class="col-sm-2 control-label">Email</label>
+                <label class="col-sm-2 control-label">Login</label>
                 <div class="col-sm-10">
                     <input  class="form-control" NAME="inputEmail" placeholder="Email" value="admin">
                 </div>
@@ -33,7 +34,7 @@
             </div>
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                    <input type="submit" class="btn btn-default">Sign in</input>
+                    <button class="btn btn-primary" type="submit">Sign In</button>
                 </div>
             </div>
         </form>

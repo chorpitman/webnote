@@ -19,16 +19,16 @@
 </head>
 <body>
 <div class="container">
-    <h1 class="header">All notes</h1>
+    <h1 class="header">ALL NOTES</h1>
     <table class="table table-striped">
         <thead>
         <tr>
-            <th>DATE NOTE</th>
-            <th>TITLE</th>
-            <th>CATEGORY</th>
-            <th>DESCRITION</th>
-            <th>EDIT</th>
-            <th>DELETE</th>
+            <th class="text-center">DATE NOTE</th>
+            <th class="text-center">TITLE</th>
+            <th class="text-center">CATEGORY</th>
+            <th class="text-center">DESCRITION</th>
+            <th class="text-center">EDIT</th>
+            <th class="text-center">DELETE</th>
         </tr>
         </thead>
         <tbody class="text-center">
@@ -40,20 +40,20 @@
                 <td class="note_category"><c:out value="${note.category}"/></td>
                 <td class="note_description"><c:out value="${note.description}"/></td>
                 <td>
-                    <button type="button" class="btn btn-success btn-xs editNote" data-toggle="modal"
+                    <button type="button" class="btn btn-success btn-sm editNote" data-toggle="modal"
                             data-target="#myModal">
                         EDIT
                     </button>
                 </td>
                 <td>
-                    <button type="button" class="btn btn-danger btn-xs">DELETE</button>
+                    <button type="button" class="btn btn-danger btn-sm">DELETE</button>
                 </td>
             </tr>
         </c:forEach>
         </tbody>
 
     </table>
-    <button type="button" class="btn btn-info btn-lg editNote" data-toggle="modal" data-target="#myModalAdd">
+    <button type="button" class="btn btn-info btn-md editNote" data-toggle="modal" data-target="#myModalAdd">
         ADD NEW NOTE
     </button>
 

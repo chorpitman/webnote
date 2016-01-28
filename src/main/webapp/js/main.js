@@ -99,7 +99,6 @@ $(document).ready(function () {
 
                 // find all notes and add to the end of list notes
                 $('.text-center').append(note);
-
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 console.error(textStatus);
