@@ -14,19 +14,19 @@ import java.io.IOException;
 public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         User user = new User();
-//create private method with work with reqest parameters
-        if (request.getParameter("inputEmailinputEmail") == null || request.getParameter("inputEmailinputEmail").isEmpty()) {
-
-        }
-
-        if (request.getParameter("inputPassword") == null || request.getParameter("inputPassword").isEmpty()) {
-        } else {
-            user.setLogin(request.getParameter("inputEmailinputEmail"));
-            user.setPassword(request.getParameter("inputPassword"));
-        }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws
             ServletException, IOException {
+    }
+
+    private static HttpServletRequest validateRequest(HttpServletRequest request) {
+        if (request.getParameter("inputEmail") == null || request.getParameter("inputEmail").isEmpty()) {
+            System.out.println("Email can't be null or empty");
+        }
+        if (request.getParameter("inputPassword") == null || request.getParameter("inputPassword").isEmpty()) {
+            System.out.println("Password can't be null or empty");
+        }
+        return request;
     }
 }
