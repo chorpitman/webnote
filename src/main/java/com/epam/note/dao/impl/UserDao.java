@@ -14,10 +14,11 @@ public class UserDao implements IUserDao {
 
     private final static String SELECT_ALL_USER = "SELECT * FROM user";
     private final static String SELECT_USER = "SELECT u.id, u.login, u.password, r.id, r.role " +
-            "FROM user u JOIN role r ON u.role_id = r.id WHERE id = ?";
+            "FROM user u JOIN role r ON u.role_id = r.id WHERE u.id = ?";
     private final static String INSERT = "INSERT INTO user (login, password, role_id) VALUES (?, ?, ?)";
     private final static String DELETE = "DELETE FROM user WHERE id = ?";
     private final static String UPDATE = "UPDATE user SET login = ?, password = ?, role_id = ? WHERE id = ?";
+    private final static String SELECT_LOGIN = "SELECT login, password FROM User WHERE login = ?";
 
     private Connection connection;
 
@@ -110,6 +111,28 @@ public class UserDao implements IUserDao {
                 role.setId(resultSet.getInt("r.id"));
                 role.setRole(Role.valueOf(resultSet.getString("r.role")));
                 user.setRole(role);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            SQLCloser.close(resultSet);
+            SQLCloser.close(preparedStatement);
+        }
+        return user;
+    }
+
+    @Override
+    public User getLogin(String login) {
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        User user = new User();
+        try {
+            preparedStatement = connection.prepareStatement(SELECT_LOGIN);
+            preparedStatement.setString(1, login);
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                user.setLogin(resultSet.getString("login"));
+                user.setPassword(resultSet.getString("password"));
             }
         } catch (SQLException e) {
             e.printStackTrace();

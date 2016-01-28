@@ -11,5 +11,6 @@ public interface IUserDao {
     public void delUser(int userId);
     public void update(User user);
     public User getById(int userId);
+    public User getLogin(String login);
 
 }
