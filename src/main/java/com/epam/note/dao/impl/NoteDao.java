@@ -17,6 +17,12 @@ public class NoteDao implements INoteDao {
     private final static String DELETE = "DELETE FROM note WHERE id = ?";
     private final static String UPDATE = "UPDATE note SET title = ?, category = ?, description = ? WHERE id = ?";
     private final static String GET_LAST_ID = "SELECT LAST_INSERT_ID() id";
+    private final static String ALL_USER_NOTES =
+            "SELECT n.id, n.note_date, n.title, n.category, n.description " +
+                    "FROM Note n " +
+                    "JOIN Note_User ON Note_User.id = n.id " +
+                    "JOIN User ON User.id = Note_User.id " +
+                    "WHERE User.login = ?";
 
 
     private Connection connection;
@@ -141,5 +147,10 @@ public class NoteDao implements INoteDao {
             SQLCloser.close(preparedStatement);
         }
         return note;
+    }
+
+    @Override
+    public List<Note> getUserNotes(String login) {
+        return null;
     }
 }

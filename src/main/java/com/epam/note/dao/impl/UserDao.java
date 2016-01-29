@@ -1,6 +1,7 @@
 package com.epam.note.dao.impl;
 
 import com.epam.note.dao.IUserDao;
+import com.epam.note.model.Note;
 import com.epam.note.model.User;
 import com.epam.note.model.UserRole;
 import com.epam.note.type.Role;

@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet(value = "/login")
@@ -20,11 +21,14 @@ public class LoginServlet extends HttpServlet {
         String login = request.getParameter("inputEmail");
         String pwd = request.getParameter("inputPassword");
         User user = userService.getUser(login, pwd);
+
         if (user != null) {
-//            request.getRequestDispatcher("/home").forward(request, response);
+            HttpSession session = request.getSession();
+            session.setAttribute("user", user);
             response.sendRedirect("/home");
         } else {
             request.getRequestDispatcher("/").forward(request, response);
+            System.out.println("hera lisogo");
         }
     }
 

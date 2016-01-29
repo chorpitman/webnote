@@ -31,6 +31,11 @@ public class NoteService implements INoteService {
     }
 
     @Override
+    public List<Note> getUserNotes(String login) {
+        return noteDao.getUserNotes(login);
+    }
+
+    @Override
     public Note getById(int id) {
         return noteDao.getById(id);
     }
