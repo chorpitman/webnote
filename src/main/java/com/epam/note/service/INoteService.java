@@ -16,6 +16,7 @@ public interface INoteService {
 
     Note getById(int id);
 
-    List<Note> getUserNotes(String login);
+    List<Note> getUserNotes(int userId);
+
 
 }

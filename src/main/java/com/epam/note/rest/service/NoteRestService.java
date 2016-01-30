@@ -20,6 +20,7 @@ import javax.ws.rs.core.Response;
 public class NoteRestService {
 
     //TODO read REST name convention and apply
+
     @DELETE
     @Path("{id}")
     public Response deleteNote(@PathParam("id") int id) {
@@ -38,7 +39,7 @@ public class NoteRestService {
         System.out.println("update noteDto id = " + noteDto);
         return Response.status(Response.Status.OK).build();
     }
-
+    //create
     @POST
     @Path("/add")
     @Consumes(MediaType.APPLICATION_JSON)

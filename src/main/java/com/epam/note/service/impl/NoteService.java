@@ -31,12 +31,12 @@ public class NoteService implements INoteService {
     }
 
     @Override
-    public List<Note> getUserNotes(String login) {
-        return noteDao.getUserNotes(login);
+    public Note getById(int id) {
+        return noteDao.getById(id);
     }
 
     @Override
-    public Note getById(int id) {
-        return noteDao.getById(id);
+    public List<Note> getUserNotes(int userId) {
+        return noteDao.getUserNotes(userId);
     }
 }

@@ -14,18 +14,18 @@ import java.io.IOException;
 
 @WebServlet(value = "/login")
 public class LoginServlet extends HttpServlet {
-
     private IUserService userService = new UserService();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String login = request.getParameter("inputEmail");
-        String pwd = request.getParameter("inputPassword");
+        String login = request.getParameter("email");
+        String pwd = request.getParameter("password");
         User user = userService.getUser(login, pwd);
 
         if (user != null) {
             HttpSession session = request.getSession();
             session.setAttribute("user", user);
             response.sendRedirect("/home");
+            System.out.println(user.toString());
         } else {
             request.getRequestDispatcher("/").forward(request, response);
             System.out.println("hera lisogo");
@@ -37,10 +37,10 @@ public class LoginServlet extends HttpServlet {
     }
 
     private boolean validateRequest(HttpServletRequest request) {
-        if (request.getParameter("inputEmail") == null || request.getParameter("inputEmail").isEmpty()) {
+        if (request.getParameter("email") == null || request.getParameter("email").isEmpty()) {
             System.out.println("Email can't be null or empty");
         }
-        if (request.getParameter("inputPassword") == null || request.getParameter("inputPassword").isEmpty()) {
+        if (request.getParameter("password") == null || request.getParameter("password").isEmpty()) {
             System.out.println("Password can't be null or empty");
         }
         return false;

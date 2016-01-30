@@ -22,9 +22,9 @@ public class EntityConvertor {
         NoteDto result = new NoteDto();
         result.setId(note.getId());
         result.setDate(note.getDate());
+        result.setTitle(note.getTitle());
         result.setCategory(note.getCategory());
         result.setDescription(note.getDescription());
-        result.setTitle(note.getTitle());
         return result;
     }
 

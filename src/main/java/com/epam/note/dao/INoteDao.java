@@ -11,6 +11,5 @@ public interface INoteDao {
     public void update(Note note);
     public Note getById(int noteId);
     public List<Note> getAll();
-    public List<Note> getUserNotes(String login);
-
+    public List<Note> getUserNotes(int userId);
 }

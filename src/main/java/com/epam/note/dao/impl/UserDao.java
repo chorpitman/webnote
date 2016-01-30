@@ -21,7 +21,7 @@ public class UserDao implements IUserDao {
     private final static String DELETE = "DELETE FROM user WHERE id = ?";
     private final static String UPDATE = "UPDATE user SET login = ?, password = ?, role_id = ? WHERE id = ?";
     //new implementation
-    private final static String GET_USER = "SELECT login, password FROM User WHERE login = ? AND password =?";
+    private final static String GET_USER = "SELECT * FROM User u WHERE u.login=? AND u.password=?";
 
     private Connection connection;
 
@@ -140,6 +140,7 @@ public class UserDao implements IUserDao {
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 user = new User();
+                user.setId(resultSet.getInt("id"));
                 user.setLogin(resultSet.getString("login"));
                 user.setPassword(resultSet.getString("password"));
             }

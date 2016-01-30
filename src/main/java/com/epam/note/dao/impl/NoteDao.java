@@ -22,7 +22,7 @@ public class NoteDao implements INoteDao {
                     "FROM Note n " +
                     "JOIN Note_User ON Note_User.id = n.id " +
                     "JOIN User ON User.id = Note_User.id " +
-                    "WHERE User.login = ?";
+                    "WHERE User.id = ?";
 
 
     private Connection connection;
@@ -47,7 +47,7 @@ public class NoteDao implements INoteDao {
 
             //find last id
             statement = connection.createStatement();
-            resultSet =statement.executeQuery(GET_LAST_ID);
+            resultSet = statement.executeQuery(GET_LAST_ID);
             while (resultSet.next()) {
                 noteId = resultSet.getInt("id");
             }
@@ -74,8 +74,7 @@ public class NoteDao implements INoteDao {
             } finally {
                 SQLCloser.close(preparedStatement);
             }
-        }
-        else {
+        } else {
             System.out.println("Wrong noteId");
         }
     }
@@ -150,7 +149,30 @@ public class NoteDao implements INoteDao {
     }
 
     @Override
-    public List<Note> getUserNotes(String login) {
-        return null;
+    public List<Note> getUserNotes(int userId) {
+        List<Note> notes = new ArrayList<>();
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+            preparedStatement = connection.prepareStatement(ALL_USER_NOTES);
+            preparedStatement.setInt(1, userId);
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                Note note = new Note();
+                note.setId(resultSet.getInt("id"));
+                note.setDate(resultSet.getDate("note_date"));
+                note.setTitle(resultSet.getString("title"));
+                note.setCategory(resultSet.getString("category"));
+                note.setDescription(resultSet.getString("description"));
+                notes.add(note);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            SQLCloser.close(resultSet);
+            SQLCloser.close(preparedStatement);
+        }
+        return notes;
     }
 }
