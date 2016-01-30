@@ -23,6 +23,11 @@ public class NoteDao implements INoteDao {
                     "JOIN Note_User ON Note_User.id = n.id " +
                     "JOIN User ON User.id = Note_User.id " +
                     "WHERE User.id = ?";
+    //find user notes
+    private final static String ALL_USER_NOTES1 = "SELECT n.id, n.note_date, n.title, n.category, n.description " +
+            "FROM note n" +
+            "JOIN user ON n.user_id = user.id" +
+            "WHERE user.id=?";
 
 
     private Connection connection;

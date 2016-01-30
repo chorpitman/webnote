@@ -1,0 +1,31 @@
+create database if not exists notes1 DEFAULT CHARACTER SET utf8;
+use notes1;
+
+CREATE TABLE note
+(
+    id INT(11) PRIMARY KEY NOT NULL,
+    note_date DATETIME NOT NULL,
+    title VARCHAR(70) NOT NULL,
+    category VARCHAR(30) NOT NULL,
+    description VARCHAR(1500) NOT NULL,
+    user_id INT(11) NOT NULL,
+    CONSTRAINT note_ibfk_1 FOREIGN KEY (user_id) REFERENCES user (id)
+);
+CREATE INDEX user_id ON note (user_id);
+CREATE TABLE role
+(
+    id INT(11) PRIMARY KEY NOT NULL,
+    role VARCHAR(20) NOT NULL
+);
+CREATE UNIQUE INDEX role ON role (role);
+
+CREATE TABLE user
+(
+    id INT(11) PRIMARY KEY NOT NULL,
+    login VARCHAR(20) NOT NULL,
+    password VARCHAR(20) NOT NULL,
+    role_id INT(11) NOT NULL,
+    CONSTRAINT fk_UserRole FOREIGN KEY (role_id) REFERENCES role (role)
+);
+CREATE INDEX fk_UserRole ON user (role_id);
+CREATE UNIQUE INDEX login ON user (login);
