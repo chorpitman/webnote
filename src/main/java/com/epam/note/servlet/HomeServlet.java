@@ -24,11 +24,11 @@ public class HomeServlet extends HttpServlet {
 
         if (session != null) {
             User user = (User) session.getAttribute("user");
-            int login = user.getId();
+            int userId = user.getId();
 
-            System.out.println("user id " + login);
+            System.out.println("user id " + userId);
 
-            List<Note> notes = noteService.getUserNotes(login);
+            List<Note> notes = noteService.getUserNotes(userId);
             System.out.println(notes.toString());
             request.setAttribute("notes", notes);
             request.getRequestDispatcher("home.jsp").forward(request, response);
