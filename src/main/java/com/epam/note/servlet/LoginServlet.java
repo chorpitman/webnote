@@ -22,9 +22,19 @@ public class LoginServlet extends HttpServlet {
         User user = userService.getUser(login, pwd);
 
         if (user != null) {
-            HttpSession session = request.getSession();
+            HttpSession session = request.getSession(true);
+
+            long time = session.getCreationTime();
+            long lastTime = session.getLastAccessedTime();
+            String idSession = session.getId();
+
             session.setAttribute("user", user);
             response.sendRedirect("/home");
+
+            System.out.println("session time creation " + time);
+            System.out.println("session last access time " + lastTime);
+            System.out.println("session id " + idSession);
+
             System.out.println(user.toString());
         } else {
             request.getRequestDispatcher("/").forward(request, response);

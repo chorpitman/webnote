@@ -45,6 +45,7 @@ public class NoteRestService {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response createNote(NoteDto noteDto) {
         INoteService noteService = new NoteService();
+        //отдаем айди на UI
         Integer id = noteService.add(EntityConvertor.convert(noteDto));
         return Response.ok(id.toString()).build();
     }

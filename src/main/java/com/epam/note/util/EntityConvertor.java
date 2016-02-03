@@ -15,6 +15,7 @@ public class EntityConvertor {
         res.setTitle(noteDto.getTitle());
         res.setDescription(noteDto.getDescription());
         res.setCategory(noteDto.getCategory());
+        res.setUserId(noteDto.getUserId());
         return res;
     }
 
@@ -25,8 +26,7 @@ public class EntityConvertor {
         result.setTitle(note.getTitle());
         result.setCategory(note.getCategory());
         result.setDescription(note.getDescription());
+        result.setUserId(note.getUserId());
         return result;
     }
-
-
 }

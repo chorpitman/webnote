@@ -8,17 +8,18 @@ public class Note {
     private String title;
     private String category;
     private String description;
+    private Integer userId;
 
     public Note() {
-
     }
 
-    public Note(Integer id, Date date, String title, String category, String description) {
+    public Note(Integer id, Date date, String title, String category, String description, Integer userId) {
         this.id = id;
         this.date = date;
         this.title = title;
         this.category = category;
         this.description = description;
+        this.userId = userId;
     }
 
     public Integer getId() {
@@ -61,6 +62,14 @@ public class Note {
         this.description = description;
     }
 
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
     @Override
     public String toString() {
         return "NoteDto{" +
@@ -69,6 +78,7 @@ public class Note {
                 ", title='" + title + '\'' +
                 ", category='" + category + '\'' +
                 ", description='" + description + '\'' +
+                ", userId='" + userId + '\'' +
                 '}';
     }
 }

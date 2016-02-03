@@ -9,6 +9,7 @@ public class NoteDto {
     private String title;
     private String category;
     private String description;
+    private Integer userId;
 
     public Integer getId() {
         return id;
@@ -50,6 +51,14 @@ public class NoteDto {
         this.description = description;
     }
 
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
     @Override
     public String toString() {
         return "NoteDto{" +
@@ -58,6 +67,7 @@ public class NoteDto {
                 ", title='" + title + '\'' +
                 ", category='" + category + '\'' +
                 ", description='" + description + '\'' +
+                ", userId='" + userId + '\'' +
                 '}';
     }
 }

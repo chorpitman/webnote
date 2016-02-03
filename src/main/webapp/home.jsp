@@ -20,6 +20,7 @@
 <body>
 <div class="container">
     <h1 class="header">ALL NOTES</h1>
+    <%--<h3 class="header">${pageContext.session.id}</h3>--%>
     <table class="table table-striped">
         <thead>
         <tr>
@@ -31,14 +32,14 @@
             <th class="text-center">DELETE</th>
         </tr>
         </thead>
-        <tbody class="text-center">
+        <tbody class="text-center" id="addCopyItem">
 
         <c:forEach var="note" items="${notes}">
             <tr id="${note.id}" class="note">
-                <td class="note_date"><c:out value="${note.date}"/></td>
-                <td class="note_title"><c:out value="${note.title}"/></td>
-                <td class="note_category"><c:out value="${note.category}"/></td>
-                <td class="note_description"><c:out value="${note.description}"/></td>
+                <td class="note_date text-left"><c:out value="${note.date}"/></td>
+                <td class="note_title text-left"><c:out value="${note.title}"/></td>
+                <td class="note_category text-left"><c:out value="${note.category}"/></td>
+                <td class="note_description text-justify"><c:out value="${note.description}"/></td>
                 <td>
                     <button type="button" class="btn btn-success btn-sm editNote" data-toggle="modal"
                             data-target="#myModal">

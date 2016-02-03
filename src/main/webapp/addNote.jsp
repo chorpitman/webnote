@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <div class="modal fade" id="myModalAdd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -39,6 +40,15 @@
                                 <div class="col-sm-10">
                     <textarea class="form-control" rows="6" maxlength="1500"
                               placeholder="Describe your note" id="addFormDescription" name="description"></textarea>
+                                </div>
+                            </div>
+
+                            <%--//user id - hidden--%>
+                            <div class="form-group hidden">
+                                <label class="col-sm-2 control-label">user id</label>
+                                <div class="col-sm-10" id="userId">
+                                    <input name="category" type="text" class="form-control" id="addInputUserId"
+                                           placeholder="Input user id for note" value="<c:out value="${userid}"/>">
                                 </div>
                             </div>
 

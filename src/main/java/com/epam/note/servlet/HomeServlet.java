@@ -21,7 +21,6 @@ public class HomeServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession(false);
-
         if (session != null) {
             User user = (User) session.getAttribute("user");
             int userId = user.getId();
@@ -31,6 +30,7 @@ public class HomeServlet extends HttpServlet {
             List<Note> notes = noteService.getUserNotes(userId);
             System.out.println(notes.toString());
             request.setAttribute("notes", notes);
+            request.setAttribute("userid", userId);
             request.getRequestDispatcher("home.jsp").forward(request, response);
         }
     }

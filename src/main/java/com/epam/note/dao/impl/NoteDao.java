@@ -12,23 +12,23 @@ import java.util.List;
 public class NoteDao implements INoteDao {
 
     private final static String SELECT_ALL_NOTES = "SELECT * FROM note";
-    private final static String SELECT_NOTE = "SELECT * FROM note WHERE id = ?";
-    private final static String INSERT = "INSERT INTO note (note_date, title, category, description) VALUES (?, ?, ?, ?)";
-    private final static String DELETE = "DELETE FROM note WHERE id = ?";
-    private final static String UPDATE = "UPDATE note SET title = ?, category = ?, description = ? WHERE id = ?";
-    private final static String GET_LAST_ID = "SELECT LAST_INSERT_ID() id";
-    private final static String ALL_USER_NOTES =
-            "SELECT n.id, n.note_date, n.title, n.category, n.description " +
-                    "FROM Note n " +
-                    "JOIN Note_User ON Note_User.id = n.id " +
-                    "JOIN User ON User.id = Note_User.id " +
-                    "WHERE User.id = ?";
-    //find user notes
-    private final static String ALL_USER_NOTES1 = "SELECT n.id, n.note_date, n.title, n.category, n.description " +
-            "FROM note n" +
-            "JOIN user ON n.user_id = user.id" +
-            "WHERE user.id=?";
 
+    private final static String SELECT_NOTE = "SELECT * FROM note WHERE id = ?";
+
+    private final static String INSERT = "INSERT INTO note (note_date, title, category, description, user_id) VALUES (?, ?, ?, ?, ?)";
+
+    private final static String DELETE = "DELETE FROM note WHERE id = ?";
+
+    private final static String UPDATE = "UPDATE note SET title = ?, category = ?, description = ? WHERE id = ?";
+
+    private final static String GET_LAST_ID = "SELECT LAST_INSERT_ID() id";
+
+    private final static String ALL_USER_NOTES =
+
+            "SELECT n.id, n.note_date, n.title, n.category, n.description, n.user_id\n" +
+            "FROM Note n\n" +
+            "JOIN User u ON u.id = n.user_id\n" +
+            "WHERE u.id = ?";
 
     private Connection connection;
 
@@ -48,6 +48,7 @@ public class NoteDao implements INoteDao {
             preparedStatement.setString(2, note.getTitle());
             preparedStatement.setString(3, note.getCategory());
             preparedStatement.setString(4, note.getDescription());
+            preparedStatement.setInt(5, note.getUserId());
             preparedStatement.executeUpdate();
 
             //find last id
@@ -170,6 +171,7 @@ public class NoteDao implements INoteDao {
                 note.setTitle(resultSet.getString("title"));
                 note.setCategory(resultSet.getString("category"));
                 note.setDescription(resultSet.getString("description"));
+                note.setUserId(resultSet.getInt("user_id"));
                 notes.add(note);
             }
         } catch (SQLException e) {

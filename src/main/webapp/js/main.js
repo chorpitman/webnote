@@ -77,7 +77,8 @@ $(document).ready(function () {
             date: new Date(),
             title: $('#addInputTitle').val(),
             category: $('#addInputCategory').val(),
-            description: $('#addFormDescription').val()
+            description: $('#addFormDescription').val(),
+            userId: $('#addInputUserId').val()
         };
 
         $.ajax({
@@ -86,11 +87,11 @@ $(document).ready(function () {
             contentType: 'application/json',
             data: JSON.stringify(obj),
             success: function (data, status, jqXHR) {
-
+                console.log(data)
                 // find note item and clone it
-                var note = $('#item').find(".note").clone();
+                var note = $('#itemCopy').find(".note").clone();
 
-                // set all data and id attr
+                 //set all data and id attr
                 note.attr('id', data);
                 note.find('.note_date').text(obj.date);
                 note.find('.note_title').text(obj.title);
@@ -98,7 +99,7 @@ $(document).ready(function () {
                 note.find('.note_description').text(obj.description);
 
                 // find all notes and add to the end of list notes
-                $('.text-center').append(note);
+                $('#addCopyItem').append(note);
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 console.error(textStatus);

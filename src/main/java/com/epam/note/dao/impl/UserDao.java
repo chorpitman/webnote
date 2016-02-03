@@ -20,7 +20,6 @@ public class UserDao implements IUserDao {
     private final static String INSERT = "INSERT INTO user (login, password, role_id) VALUES (?, ?, ?)";
     private final static String DELETE = "DELETE FROM user WHERE id = ?";
     private final static String UPDATE = "UPDATE user SET login = ?, password = ?, role_id = ? WHERE id = ?";
-    //new implementation
     private final static String GET_USER = "SELECT * FROM User u WHERE u.login=? AND u.password=?";
 
     private Connection connection;
@@ -143,6 +142,8 @@ public class UserDao implements IUserDao {
                 user.setId(resultSet.getInt("id"));
                 user.setLogin(resultSet.getString("login"));
                 user.setPassword(resultSet.getString("password"));
+                // TODO: 02.02.16 ask alex how set in user role_id 
+//                user.setRole(resultSet.getInt("role_id"));
             }
         } catch (SQLException e) {
             e.printStackTrace();

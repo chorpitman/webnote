@@ -1,7 +1,6 @@
-<div id="item" hidden>
+<div id="itemCopy" hidden>
     <table>
     <tr class="note">
-        <td></td>
         <td class="note_date"></td>
         <td class="note_title"></td>
         <td class="note_category"></td>
