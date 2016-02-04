@@ -9,15 +9,15 @@
                     <span aria-hidden="true">web-notes.com</span>
                     <span class="sr-only">Close</span>
                 </button>
-                <h4 class="modal-title" id="myModalLabel">ADD NOTE SERVICE</h4>
+                <h4 class="modal-title" id="myModalLabel">EDIT NOTE SERVICE</h4>
             </div>
             <div class="modal-body">
                 <%--body of modal window  START--%>
                 <div class="container">
                     <div class="col-sm-6">
                         <form class="form-horizontal" role="form" id="formId" method="post">
-
-                            <div class="form-group hidden">
+                            <%--скрытой поле --%>
+                            <div class="form-group">
                                 <label class="col-sm-2 control-label">id</label>
                                 <div class="col-sm-10">
                                     <input name="id" type="text" class="form-control" id="idNote"

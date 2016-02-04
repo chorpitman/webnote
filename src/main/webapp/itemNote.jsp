@@ -1,6 +1,6 @@
 <div id="itemCopy" hidden>
     <table>
-    <tr class="note">
+    <tr id="" class="note text-justify">
         <td class="note_date"></td>
         <td class="note_title"></td>
         <td class="note_category"></td>

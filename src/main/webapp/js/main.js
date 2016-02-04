@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    //delete button
+    //DELTE BUTTON
     $('button.btn-danger').click(function () {
         var note = $(this).closest("tr.note");
         var id = $(note).attr('id');
@@ -17,26 +17,21 @@ $(document).ready(function () {
         });
     });
 
-    //delete edit get all fields in form
-    $('button.btn-success').click(function () {
+    //EDIT: get all fields in form
+    $(document).on('click', 'button.btn-success.editNote', function () {
         var note = $(this).closest("tr.note");
         var id = $(note).attr("id");
-        $.ajax({
-            type: "GET",
-            url: "/api/note/" + id,
-            dataType: "json",
-            success: function (data, status, jgXHR) {
-                if (jgXHR.status == 200) {
-                    $('#idNote').val(data.id);
-                    $('#inputTitle').val(data.title);
-                    $('#inputCategory').val(data.category);
-                    $('#description').val(data.description);
-                }
-            }
-        });
+        var title = $(note).find(".note_title").text();
+        var category = $(note).find(".note_category").text();
+        var description = $(note).find(".note_description").text();
+
+        $('#idNote').val(id);
+        $('#inputTitle').val(title);
+        $('#inputCategory').val(category);
+        $('#description').val(description);
     });
 
-    //save changes
+    //BUTTON SAVE CHANGES: model window is opened AND WE PREESS SAVE BUTTON
     $("#saveChangesOnNote").on('click', function () {
         //var note = $("#formId").serialize();
         //console.log(JSON.stringify(note));
@@ -87,11 +82,11 @@ $(document).ready(function () {
             contentType: 'application/json',
             data: JSON.stringify(obj),
             success: function (data, status, jqXHR) {
-                console.log(data)
+                console.log(data);
                 // find note item and clone it
                 var note = $('#itemCopy').find(".note").clone();
 
-                 //set all data and id attr
+                //set all data and id attr
                 note.attr('id', data);
                 note.find('.note_date').text(obj.date);
                 note.find('.note_title').text(obj.title);
@@ -100,6 +95,7 @@ $(document).ready(function () {
 
                 // find all notes and add to the end of list notes
                 $('#addCopyItem').append(note);
+                $('button.btn-success.editNote').on('editNote', false);
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 console.error(textStatus);
