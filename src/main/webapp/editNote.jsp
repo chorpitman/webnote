@@ -17,7 +17,7 @@
                     <div class="col-sm-6">
                         <form class="form-horizontal" role="form" id="formId" method="post">
                             <%--скрытой поле --%>
-                            <div class="form-group">
+                            <div class="form-group" hidden>
                                 <label class="col-sm-2 control-label">id</label>
                                 <div class="col-sm-10">
                                     <input name="id" type="text" class="form-control" id="idNote"

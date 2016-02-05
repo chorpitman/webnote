@@ -3,18 +3,18 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+    <title>Web notes</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>web-notes.com</title>
 
     <script type="text/javascript" src="../js/lib/jquery-2.1.4.min.js"></script>
-    <script type="text/javascript" src="../js/main.js"></script>
+    <script type="text/javascript" src="../js/app/main.js"></script>
 
     <!-- Bootstrap -->
-    <link href="../js/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <script src="../js/bootstrap/js/bootstrap.min.js"></script>
+    <link href="../css/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <script src="../js/lib/bootstrap/bootstrap.min.js"></script>
 
 </head>
 <body>
@@ -42,10 +42,7 @@
                 <td class="note_category text-left"><c:out value="${note.category}"/></td>
                 <td class="note_description text-justify"><c:out value="${note.description}"/></td>
                 <td>
-                    <button type="button" class="btn btn-success btn-sm editNote" data-toggle="modal"
-                            data-target="#myModal">
-                        EDIT
-                    </button>
+                    <button type="button" class="btn btn-success btn-sm editNote" data-toggle="modal" data-target="#myModal">EDIT</button>
                 </td>
                 <td>
                     <button type="button" class="btn btn-danger btn-sm deleteNote">DELETE</button>
