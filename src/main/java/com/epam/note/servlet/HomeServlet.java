@@ -33,6 +33,9 @@ public class HomeServlet extends HttpServlet {
             request.setAttribute("userid", userId);
             request.getRequestDispatcher("home.jsp").forward(request, response);
         }
+        else {
+            request.getRequestDispatcher("/").forward(request, response);
+        }
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

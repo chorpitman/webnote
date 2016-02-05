@@ -3,11 +3,11 @@ $(document).ready(function () {
     $(document).on('click', 'button.deleteNote', function () {
         var note = $(this).closest("tr.note");
         var id = $(note).attr('id');
+
         $.ajax({
             type: "DELETE",
             url: "/api/note/" + id,
             success: function (data, status, jqXHR) {
-                $('button.deleteNote').on('deleteNote', false)
                 if (jqXHR.status == 200) {
                     note.remove();
                 }
@@ -33,7 +33,7 @@ $(document).ready(function () {
     });
 
     //BUTTON SAVE CHANGES: model window is opened AND WE PREESS SAVE BUTTON
-    $("#saveChangesOnNote").on('click', function () {
+    $(document).on('click','#saveChangesOnNote' ,function () {
         //var note = $("#formId").serialize();
         //console.log(JSON.stringify(note));
         var note = $(this).closest("tr.note");
@@ -67,7 +67,7 @@ $(document).ready(function () {
     });
 
     //add new note
-    $("#saveAddNote").on('click', function () {
+    $(document).on('click', '#saveAddNote',function () {
 
         var obj = {
             date: new Date(),
@@ -96,7 +96,7 @@ $(document).ready(function () {
 
                 // find all notes and add to the end of list notes
                 $('#addCopyItem').append(note);
-                $('button.editNote').on('editNote', false);
+                //$('button.editNote').on('editNote', false);
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 console.error(textStatus);
