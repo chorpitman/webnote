@@ -44,7 +44,7 @@
                             </div>
 
                             <%--//user id - hidden--%>
-                            <div class="form-group">
+                            <div class="form-group" hidden>
                                 <label class="col-sm-2 control-label">user id</label>
                                 <div class="col-sm-10" id="userId">
                                     <input name="category" type="text" class="form-control" id="addInputUserId"

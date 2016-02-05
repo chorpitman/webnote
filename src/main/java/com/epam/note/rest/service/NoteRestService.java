@@ -39,7 +39,12 @@ public class NoteRestService {
         System.out.println("update noteDto id = " + noteDto);
         return Response.status(Response.Status.OK).build();
     }
-    //create
+
+    /**
+     * Create new note
+     * @param noteDto
+     * @return id of new note
+     */
     @POST
     @Path("/add")
     @Consumes(MediaType.APPLICATION_JSON)

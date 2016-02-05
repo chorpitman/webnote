@@ -36,7 +36,8 @@
 
         <c:forEach var="note" items="${notes}">
             <tr id="${note.id}" class="note">
-                <td class="note_date text-left"><c:out value="${note.date}"/></td>
+                <td class="note_date text-left"><fmt:formatDate pattern="dd.MM.yyyy, HH:mm:ss"
+                                                                value="${note.date}" /></td>
                 <td class="note_title text-left"><c:out value="${note.title}"/></td>
                 <td class="note_category text-left"><c:out value="${note.category}"/></td>
                 <td class="note_description text-justify"><c:out value="${note.description}"/></td>

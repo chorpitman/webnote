@@ -44,7 +44,7 @@ public class NoteDao implements INoteDao {
         int noteId = 0;
         try {
             preparedStatement = connection.prepareStatement(INSERT);
-            preparedStatement.setDate(1, new Date(System.currentTimeMillis()));
+            preparedStatement.setDate(1, new Date(note.getDate().getTime()));
             preparedStatement.setString(2, note.getTitle());
             preparedStatement.setString(3, note.getCategory());
             preparedStatement.setString(4, note.getDescription());

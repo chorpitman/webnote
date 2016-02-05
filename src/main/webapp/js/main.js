@@ -89,7 +89,7 @@ $(document).ready(function () {
 
                 //set all data and id attr
                 note.attr('id', data);
-                note.find('.note_date').text(obj.date);
+                note.find('.note_date').text(obj.date.toLocaleString());
                 note.find('.note_title').text(obj.title);
                 note.find('.note_category').text(obj.category);
                 note.find('.note_description').text(obj.description);
