@@ -1,12 +1,13 @@
 $(document).ready(function () {
     //DELTE BUTTON
-    $('button.btn-danger').click(function () {
+    $(document).on('click', 'button.deleteNote', function () {
         var note = $(this).closest("tr.note");
         var id = $(note).attr('id');
         $.ajax({
             type: "DELETE",
             url: "/api/note/" + id,
             success: function (data, status, jqXHR) {
+                $('button.deleteNote').on('deleteNote', false)
                 if (jqXHR.status == 200) {
                     note.remove();
                 }
@@ -18,7 +19,7 @@ $(document).ready(function () {
     });
 
     //EDIT: get all fields in form
-    $(document).on('click', 'button.btn-success.editNote', function () {
+    $(document).on('click', 'button.editNote', function () {
         var note = $(this).closest("tr.note");
         var id = $(note).attr("id");
         var title = $(note).find(".note_title").text();
@@ -95,7 +96,7 @@ $(document).ready(function () {
 
                 // find all notes and add to the end of list notes
                 $('#addCopyItem').append(note);
-                $('button.btn-success.editNote').on('editNote', false);
+                $('button.editNote').on('editNote', false);
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 console.error(textStatus);

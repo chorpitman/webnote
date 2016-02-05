@@ -47,7 +47,7 @@
                     </button>
                 </td>
                 <td>
-                    <button type="button" class="btn btn-danger btn-sm">DELETE</button>
+                    <button type="button" class="btn btn-danger btn-sm deleteNote">DELETE</button>
                 </td>
             </tr>
         </c:forEach>

@@ -11,7 +11,7 @@
             </button>
         </td>
         <td>
-            <button type="button" class="btn btn-danger btn-md">DELETE</button>
+            <button type="button" class="btn btn-danger btn-md deleteNote">DELETE</button>
         </td>
     </tr>
     </table>
