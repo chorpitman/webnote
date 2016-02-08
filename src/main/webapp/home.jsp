@@ -11,6 +11,9 @@
 
     <script type="text/javascript" src="../js/lib/jquery-2.1.4.min.js"></script>
     <script type="text/javascript" src="../js/app/main.js"></script>
+    <script type="text/javascript" src="../js/app/home.js"></script>
+    <script type="text/javascript" src="../js/app/home_event_handler.js"></script>
+    <script type="text/javascript" src="../js/app/home_action.js"></script>
 
     <!-- Bootstrap -->
     <link href="../css/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">

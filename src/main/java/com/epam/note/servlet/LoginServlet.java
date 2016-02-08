@@ -22,7 +22,7 @@ public class LoginServlet extends HttpServlet {
         User user = userService.getUser(login, pwd);
 
         if (user != null) {
-            HttpSession session = request.getSession(true);
+            HttpSession session = request.getSession();
 
             long time = session.getCreationTime();
             long lastTime = session.getLastAccessedTime();
@@ -37,7 +37,7 @@ public class LoginServlet extends HttpServlet {
 
             System.out.println(user.toString());
         } else {
-            request.getRequestDispatcher("/").forward(request, response);
+            response.sendRedirect("/");
             System.out.println("hera lisogo");
         }
     }

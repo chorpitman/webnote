@@ -20,22 +20,17 @@ public class HomeServlet extends HttpServlet {
     private INoteService noteService = new NoteService();
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         HttpSession session = request.getSession(false);
-        if (session != null) {
-            User user = (User) session.getAttribute("user");
-            int userId = user.getId();
+        User user = (User) session.getAttribute("user");
+        int userId = user.getId();
+        System.out.println("user id " + userId);
 
-            System.out.println("user id " + userId);
-
-            List<Note> notes = noteService.getUserNotes(userId);
-            System.out.println(notes.toString());
-            request.setAttribute("notes", notes);
-            request.setAttribute("userid", userId);
-            request.getRequestDispatcher("home.jsp").forward(request, response);
-        }
-        else {
-            response.sendRedirect("/");
-        }
+        List<Note> notes = noteService.getUserNotes(userId);
+        System.out.println(notes.toString());
+        request.setAttribute("notes", notes);
+        request.setAttribute("userid", userId);
+        request.getRequestDispatcher("home.jsp").forward(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

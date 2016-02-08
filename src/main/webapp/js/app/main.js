@@ -67,7 +67,7 @@ $(document).ready(function () {
     });
 
     //add new note
-    $(document).on('click', '#saveAddNote',function () {
+    /*$(document).on('click', '#saveAddNote', function () {
 
         var obj = {
             date: new Date(),
@@ -102,5 +102,7 @@ $(document).ready(function () {
                 console.error(textStatus);
             }
         });
-    })
+    });*/
+
+    Note.bindEvents();
 });
