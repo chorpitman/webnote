@@ -1,6 +1,6 @@
 var Note = window.Note || {};
 
-Note = (function() {
+Note.Home = (function() {
     var module = {};
 
     module.bindEvents = function() {

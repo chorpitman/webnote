@@ -104,5 +104,5 @@ $(document).ready(function () {
         });
     });*/
 
-    Note.bindEvents();
+    Note.Home.bindEvents();
 });
