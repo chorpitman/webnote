@@ -24,4 +24,48 @@
     <servlet-name>jersey-json-serlvet</servlet-name>
     <url-pattern>/api/*</url-pattern>
   </servlet-mapping>
+
+    <!--security START-->
+    <!--fist role start-->
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>ConstraintZone</web-resource-name>
+            <url-pattern>/home</url-pattern>
+            <url-pattern>/login</url-pattern>
+        </web-resource-collection>
+
+        <auth-constraint>
+            <role-name>Admin</role-name>
+        </auth-constraint>
+    </security-constraint>
+
+    <security-role>
+        <role-name>Admin</role-name>
+    </security-role>
+    <!--fist role end-->
+
+    <!--second role start-->
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>ConstraintZone</web-resource-name>
+            <url-pattern>/home</url-pattern>
+            <url-pattern>/login</url-pattern>
+        </web-resource-collection>
+
+        <auth-constraint>
+            <role-name>User</role-name>
+        </auth-constraint>
+    </security-constraint>
+
+    <security-role>
+        <role-name>User</role-name>
+    </security-role>
+    <!--second role end-->
+
+<!--Login method auth-->
+    <login-config>
+        <auth-method>BASIC</auth-method>
+        <realm-name>JDBC_REALM</realm-name>
+    </login-config>
+
 </web-app>
